@@ -1,0 +1,1 @@
+This repository contains my practice exercises for an ASP.NET course I'm currently taking. My first project will be a task manager, built solely to practice and understand the concepts taught in the course.
