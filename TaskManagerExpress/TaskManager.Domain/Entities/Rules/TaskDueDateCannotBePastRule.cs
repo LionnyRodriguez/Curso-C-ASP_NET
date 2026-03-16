@@ -4,7 +4,7 @@ using TaskManager.Domain.Shared;
 namespace TaskManager.Domain.Entities.Rules
 {
     
-    public class TaskDueDateCannotBePastRule(DateTime testDeadLine) : IBusinessRule
+    public class TaskDueDateCannotBePastRule(DateTime? testDeadLine) : IBusinessRule
     {
         public Result Check()
         {

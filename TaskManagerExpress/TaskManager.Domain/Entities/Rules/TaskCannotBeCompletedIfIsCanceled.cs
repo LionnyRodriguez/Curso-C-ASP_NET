@@ -8,7 +8,7 @@ using TaskManager.Domain.Shared;
 
 namespace TaskManager.Domain.Entities.Rules
 {
-    public class TaskCannotBeCompletedAndCanceled(bool CompletedOrCanceled) :IBusinessRule
+    public class TaskCannotBeCompletedAndCanceled(bool? CompletedOrCanceled) :IBusinessRule
     {
         public Result Check()
         {
