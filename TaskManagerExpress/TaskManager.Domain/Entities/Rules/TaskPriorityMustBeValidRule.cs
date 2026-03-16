@@ -9,7 +9,7 @@ using TaskManager.Domain.Shared;
 
 namespace TaskManager.Domain.Entities.Rules
 {
-    public class TaskPriorityMustBeValidRule(TaskPriority _priority) : IBusinessRule
+    public class TaskPriorityMustBeValidRule(TaskPriority? _priority) : IBusinessRule
     {
         public Result Check()
         {

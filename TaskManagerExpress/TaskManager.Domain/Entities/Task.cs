@@ -9,11 +9,11 @@ namespace TaskManager.Domain.Entities
     public class Task : Entity
     {
         public string TaskTitle { get; private set; } = string.Empty; 
-        public string TaskText { get; private set; } = "Without text.";  
-        public TaskPriority Priority { get; private set; } = TaskPriority.Low;
-        public bool IsCompleted { get; private set; } = false; 
-        public bool IsCanceled { get; private set; } = false;
-        public DateTime DeadLine {  get; private set; } = DateTime.Today.AddDays(7);
+        public string TaskText { get; private set; } = string.Empty;  
+        public TaskPriority? Priority { get; private set; }
+        public bool? IsCompleted { get; private set; } = false; 
+        public bool? IsCanceled { get; private set; } = false;
+        public DateTime? DeadLine {  get; private set; }
         private Task() { } //Obligated to DB.
         private Task(Guid id,
             string taskTitle,
@@ -50,8 +50,8 @@ namespace TaskManager.Domain.Entities
         public Result UpdateTask(
             string _taskTitle,
             string _taskText,
-            TaskPriority _priority, 
-            DateTime _deadLine)
+            TaskPriority? _priority, 
+            DateTime? _deadLine)
         {
             var result = CheckRules(       
                 new TaskDueDateCannotBePastRule(_deadLine),
@@ -68,7 +68,7 @@ namespace TaskManager.Domain.Entities
             return Result.Success();
         }
         
-        public Result SetIsCompleted(bool _isCompleted)
+        public Result SetIsCompleted(bool? _isCompleted)
         {
             var result = CheckRules(new TaskCannotBeCompletedAndCanceled(this.IsCanceled));
             if (result.IsFailure) return result;
@@ -77,7 +77,7 @@ namespace TaskManager.Domain.Entities
             return Result.Success();
         } 
 
-        public Result SetIsCanceled(bool _isCanceled)
+        public Result SetIsCanceled(bool? _isCanceled)
         {
             var result = CheckRules(new TaskCannotBeCompletedAndCanceled(this.IsCompleted));
             if (result.IsFailure) return result;
